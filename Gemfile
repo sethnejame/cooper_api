@@ -13,6 +13,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'rack-cors', require: 'rack/cors'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'devise_token_auth'
+# gem 'devise'
 
 group :development, :test do
   gem 'pry-rails'
