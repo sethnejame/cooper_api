@@ -3,7 +3,7 @@ RSpec.describe 'User Registration', type: :request do
 
   context 'with valid credentials' do
     it 'returns a user and a token' do
-      post '/api/v1/auth', params: { email: 'example@craftacademy.se',
+      post '/api/v1/auth', params: { email: 'fatbob@gmail.com',
                                       password: 'password',
                                       password_confirmation: 'password'
                                     }, headers: headers
@@ -16,7 +16,7 @@ RSpec.describe 'User Registration', type: :request do
 
   context 'returns an error message when user submits' do
     it 'non-matching password confirmation' do
-      post '/api/v1/auth', params: { email: 'example@craftacademy.se',
+      post '/api/v1/auth', params: { email: 'hackerman@gmail.com',
                                       password: 'password',
                                       password_confirmation: 'wrong_password'
                                     }, headers: headers
@@ -26,7 +26,7 @@ RSpec.describe 'User Registration', type: :request do
       end
 
       it 'has an invalid email address' do
-        post '/api/v1/auth', params: { email: 'example@craft',
+        post '/api/v1/auth', params: { email: 'crap@notreal',
                                         password: 'password',
                                         password_confirmation: 'password'
                                       }, headers: headers
@@ -36,11 +36,11 @@ RSpec.describe 'User Registration', type: :request do
       end
 
       it 'is already a registered email' do
-        FactoryBot.create(:user, email: 'example@craftacademy.se',
+        FactoryBot.create(:user, email: 'sethnejame@gmail.com',
                                   password: 'password',
                                   password_confirmation: 'password')
 
-        post '/api/v1/auth', params: { email: 'example@craftacademy.se',
+        post '/api/v1/auth', params: { email: 'sethnejame@gmail.com',
                                         password: 'password',
                                         password_confirmation: 'password'
                                       }, headers: headers
