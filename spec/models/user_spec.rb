@@ -30,16 +30,16 @@ RSpec.describe User, type: :model do
                 'asdf@example', 'ddd@.d. .d', 'ddd@.d']
       
       emails.each do |email|
-        if { is_expdcted.not_to allow_value(email).for(:email) }
+        it { is_expected.not_to allow_value(email).for(:email) }
       end
   end
 
-  context 'should have an invalid email address' do
-    emails= ['asdf@ds.com', 'yes@example.com', 'testme@yahoo.com',
-              'asDf@example.org', 'ddd@.de', 'dd.dd@whatever.yo']
+  context 'should have a valid email address' do
+    emails = ['asdf@ds.com', 'hello@example.uk', 'test1234@yahoo.si',
+      'asdf@example.eu']
     
     emails.each do |email|
-      if { is_expdcted.not_to allow_value(email).for(:email) }
+      it { is_expected.to allow_value(email).for(:email) }
     end
 end
 end
