@@ -1,11 +1,11 @@
 RSpec.describe 'User Registration', type: :request do
-  let(:headers) { { HTTP_ACCEPT: 'application/json' }}
+  let(:headers) { { HTTP_ACCEPT: 'application/json' } }
 
   context 'with valid credentials' do
     it 'returns a user and a token' do
       post '/api/v1/auth', params: { email: 'example@craftacademy.se',
                                       password: 'password',
-                                      password_confirmation: 'wrong_password'
+                                      password_confirmation: 'password'
                                     }, headers: headers
                                     
                                     
@@ -26,12 +26,12 @@ RSpec.describe 'User Registration', type: :request do
       end
 
       it 'has an invalid email address' do
-        post '/apit/v1/auth', params: { email: 'example@craft',
+        post '/api/v1/auth', params: { email: 'example@craft',
                                         password: 'password',
                                         password_confirmation: 'password'
                                       }, headers: headers
 
-        expect(response_json['errors']['emails']).to eq ['is not an email']
+        expect(response_json['errors']['email']).to eq ['is not an email']
         expect(response.status).to eq 422
       end
 
